@@ -1,4 +1,4 @@
-# A python script that creates a gnome-art.xml
+# A python script that creates a gnome3 wallpaper xml
 
 ## how to run
 
