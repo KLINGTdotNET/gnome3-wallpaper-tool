@@ -4,6 +4,7 @@ import argparse
 import os.path
 from pathlib import Path
 
+
 def main():
     args = get_args()
     if(args.path):
@@ -19,11 +20,12 @@ def main():
             if(filepaths):
                 print_xml(filepaths)
 
+
 def print_xml(filepaths):
-    prefix='''<?xml version="1.0" encoding="UTF-8"?>
+    prefix = '''<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
 <wallpapers>'''
-    template='''
+    template = '''
     <wallpaper deleted="false">
         <name>{0}</name>
         <name xml:lang="en_GB">{0}</name>
@@ -32,17 +34,21 @@ def print_xml(filepaths):
         <pcolor>#ffffff</pcolor>
         <scolor>#000000</scolor>
     </wallpaper>'''
-    postfix='</wallpapers>'
+    postfix = '</wallpapers>'
     print(prefix)
     for filepath in filepaths:
         name, _ = os.path.splitext(filepath.name)
         print(template.format(name, filepath._str))
     print(postfix)
 
+
 def get_args():
-    parser = argparse.ArgumentParser(description='Create a gnome3 background xml file')
-    parser.add_argument('path', help='the path where your wallpapers are stored')
+    parser = argparse.ArgumentParser(
+        description='Create a gnome3 background xml file')
+    parser.add_argument(
+        'path', help='the path where your wallpapers are stored')
     return parser.parse_args()
+
 
 def check_path(path):
     sanitized = os.path.expanduser(path)
